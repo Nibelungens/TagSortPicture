@@ -2,7 +2,6 @@ image: jamesdbloom/docker-java8-maven
 
 stages:
     - test
-    - clean
     - install
     
 maven-test:
@@ -10,16 +9,10 @@ maven-test:
     script:
         - mvn test
 
-maven-clean:
-    stage: clean
+maven-install:
+    stage: install
     script:
-        - mvn clean
-
-maven-build:
-    stage: build
-    script:
-        - mvn install
+        - mvn clean install
     artifacts:
         paths:
-            - target/tagsortpictures-1.0.0-jar-with-dependencies.jar
-            - tagsortpictures-1.0.0.jar
+            - target/*.jar
