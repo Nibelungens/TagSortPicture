@@ -7,6 +7,7 @@ import java.util.Map;
 
 import static org.junit.Assert.*;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.selfip.nibelungen.tagsortpictures.core.TagSortPicturesCore;
 import org.selfip.nibelungen.tagsortpictures.core.interfaces.TemplateGuiInterface;
@@ -98,6 +99,7 @@ public class TestCore {
 	 * 
 	 */
 	@Test
+	@Ignore
 	public void test_existTagInFolder() {
 
 		TemplateGuiInterface templateGui = new TemplateGuiInterface() {
@@ -126,6 +128,7 @@ public class TestCore {
 	 * 
 	 */
 	@Test
+	@Ignore
 	public void test_nbFiles() {
 
 		TemplateGuiInterface templateGui = new TemplateGuiInterface() {

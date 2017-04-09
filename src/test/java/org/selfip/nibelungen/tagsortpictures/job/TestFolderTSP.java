@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 import java.io.File;
 import java.io.IOException;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -85,6 +86,7 @@ public class TestFolderTSP {
 	 * 
 	 */
 	@Test
+	@Ignore
 	public void test_getFiles() {
 		FolderTSP folder = new FolderTSP(VALID_FULL_FOLDER);
 		String expectedResult = "[jpeg.jpeg, jpg.jpg, png.png]";
@@ -98,6 +100,7 @@ public class TestFolderTSP {
 	 * 
 	 */
 	@Test
+	@Ignore
 	public void test_getNumberFileInFolder() {
 		FolderTSP folder = new FolderTSP(VALID_FULL_FOLDER);
 		
