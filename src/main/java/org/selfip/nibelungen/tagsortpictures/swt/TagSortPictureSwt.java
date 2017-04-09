@@ -4,31 +4,31 @@ import java.io.File;
 import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.wb.swt.SWTResourceManager;
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.DirectoryDialog;
-import org.eclipse.swt.widgets.TabFolder;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.TabItem;
-import org.eclipse.swt.widgets.ProgressBar;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.Canvas;
+import org.eclipse.swt.events.KeyAdapter;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Canvas;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.DirectoryDialog;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.ProgressBar;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.wb.swt.SWTResourceManager;
 import org.selfip.nibelungen.tagsortpictures.core.TagSortPicturesCore;
 import org.selfip.nibelungen.tagsortpictures.core.interfaces.TemplateGuiInterface;
 import org.selfip.nibelungen.tagsortpictures.job.MessageRowTSP;
 import org.selfip.nibelungen.tagsortpictures.job.MessageRowTSPEnum;
 import org.selfip.nibelungen.tagsortpictures.swt.interfaces.TagSortPicturesSwtInterface;
-import org.eclipse.swt.events.KeyAdapter;
-import org.eclipse.swt.events.KeyEvent;
 
 public class TagSortPictureSwt implements TagSortPicturesSwtInterface {
 
@@ -55,16 +55,16 @@ public class TagSortPictureSwt implements TagSortPicturesSwtInterface {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
-		mainWindow.open();
-		mainWindow.layout();
-		while (!mainWindow.isDisposed()) {
+		this.mainWindow.open();
+		this.mainWindow.layout();
+		while (!this.mainWindow.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
 		}
 	}
 
-	private Shell CreateShell() {
+	private Shell createShell() {
 		Shell mainWindow = new Shell(SWT.CLOSE | SWT.MIN);
 		GridLayout gl_mainWindow = new GridLayout(3, false);
 		Canvas canvas = new Canvas(mainWindow, SWT.NONE);
@@ -113,15 +113,15 @@ public class TagSortPictureSwt implements TagSortPicturesSwtInterface {
 		gl_composite.horizontalSpacing = 10;
 		composite.setLayout(gl_composite);
 		
-		textSource = new Text(composite, SWT.BORDER | SWT.READ_ONLY);
-		textSource.setBackground(TagSortPictureSwt.RED);
-		textSource.setEditable(false);
-		textSource.setText(Messages.TagSortPictureSwt_textSourceFolder);
-		textSource.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		this.textSource = new Text(composite, SWT.BORDER | SWT.READ_ONLY);
+		this.textSource.setBackground(TagSortPictureSwt.RED);
+		this.textSource.setEditable(false);
+		this.textSource.setText(Messages.TagSortPictureSwt_textSourceFolder);
+		this.textSource.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		
-		btnSourceFolder = new Button(composite, SWT.NONE);
-		btnSourceFolder.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		btnSourceFolder.setText(Messages.TagSortPictureSwt_btnSearchSourceFolder);
+		this.btnSourceFolder = new Button(composite, SWT.NONE);
+		this.btnSourceFolder.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		this.btnSourceFolder.setText(Messages.TagSortPictureSwt_btnSearchSourceFolder);
 		
 		Label lblNbFiles = new Label(composite, SWT.CENTER);
 		GridData gd_lblNbFiles = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
@@ -129,25 +129,25 @@ public class TagSortPictureSwt implements TagSortPicturesSwtInterface {
 		lblNbFiles.setLayoutData(gd_lblNbFiles);
 		lblNbFiles.setText(Messages.TagSortPictureSwt_lblNumberFiles);
 		
-		textNbFiles = new Text(composite, SWT.BORDER | SWT.READ_ONLY | SWT.CENTER);
-		textNbFiles.setText(Messages.TagSortPictureSwt_textDefaultNoNumberFiles);
+		this.textNbFiles = new Text(composite, SWT.BORDER | SWT.READ_ONLY | SWT.CENTER);
+		this.textNbFiles.setText(Messages.TagSortPictureSwt_textDefaultNoNumberFiles);
 		GridData gd_textNbFiles = new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1);
 		gd_textNbFiles.widthHint = 74;
-		textNbFiles.setLayoutData(gd_textNbFiles);
+		this.textNbFiles.setLayoutData(gd_textNbFiles);
 		
-		btnRefreshNumber = new Button(composite, SWT.NONE);
-		btnRefreshNumber.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		btnRefreshNumber.setText(Messages.TagSortPictureSwt_btnRefreshNumberFiles);
+		this.btnRefreshNumber = new Button(composite, SWT.NONE);
+		this.btnRefreshNumber.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		this.btnRefreshNumber.setText(Messages.TagSortPictureSwt_btnRefreshNumberFiles);
 		
-		textDestination = new Text(composite, SWT.BORDER | SWT.READ_ONLY);
-		textDestination.setBackground(TagSortPictureSwt.RED);
-		textDestination.setEditable(false);
-		textDestination.setText(Messages.TagSortPictureSwt_textDestinationFolder);
-		textDestination.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		this.textDestination = new Text(composite, SWT.BORDER | SWT.READ_ONLY);
+		this.textDestination.setBackground(TagSortPictureSwt.RED);
+		this.textDestination.setEditable(false);
+		this.textDestination.setText(Messages.TagSortPictureSwt_textDestinationFolder);
+		this.textDestination.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		
-		btnDestinationFolder = new Button(composite, SWT.NONE);
-		btnDestinationFolder.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		btnDestinationFolder.setText(Messages.TagSortPictureSwt_btnSearchDestinationFolder);
+		this.btnDestinationFolder = new Button(composite, SWT.NONE);
+		this.btnDestinationFolder.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		this.btnDestinationFolder.setText(Messages.TagSortPictureSwt_btnSearchDestinationFolder);
 	}
 	
 	/**
@@ -158,27 +158,27 @@ public class TagSortPictureSwt implements TagSortPicturesSwtInterface {
 		TabItem tabLogs = new TabItem(tabFolder, SWT.NONE);
 		tabLogs.setText(Messages.TagSortPictureSwt_tbtmLogs_text);
 		
-		listLogs = new List(tabFolder, SWT.H_SCROLL | SWT.V_SCROLL);
-		tabLogs.setControl(listLogs);
+		this.listLogs = new List(tabFolder, SWT.H_SCROLL | SWT.V_SCROLL);
+		tabLogs.setControl(this.listLogs);
 	}
 	
 	/**
 	 * 
 	 */
 	private void createTagsPanel() {
-		textAddTag = new Text(mainWindow, SWT.BORDER);
-		textAddTag.setText("");
-		textAddTag.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		this.textAddTag = new Text(mainWindow, SWT.BORDER);
+		this.textAddTag.setText("");
+		this.textAddTag.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		
-		btnAddTag = new Button(mainWindow, SWT.NONE);
+		this.btnAddTag = new Button(mainWindow, SWT.NONE);
 		GridData gd_btnAddTag = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_btnAddTag.widthHint = 75;
-		btnAddTag.setLayoutData(gd_btnAddTag);
-		btnAddTag.setText(Messages.TagSortPictureSwt_btnAddTag);
+		this.btnAddTag.setLayoutData(gd_btnAddTag);
+		this.btnAddTag.setText(Messages.TagSortPictureSwt_btnAddTag);
 		
-		btnDelTag = new Button(mainWindow, SWT.NONE);
-		btnDelTag.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
-		btnDelTag.setText(Messages.TagSortPictureSwt_btnDelTag);
+		this.btnDelTag = new Button(mainWindow, SWT.NONE);
+		this.btnDelTag.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		this.btnDelTag.setText(Messages.TagSortPictureSwt_btnDelTag);
 		
 		listExcludeTag = new List(mainWindow, SWT.BORDER | SWT.V_SCROLL | SWT.MULTI);
 		listExcludeTag.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 2, 1));
@@ -188,22 +188,22 @@ public class TagSortPictureSwt implements TagSortPicturesSwtInterface {
 	 * 
 	 */
 	private void createProgressbarPanel() {
-		progressBar = new ProgressBar(mainWindow, SWT.NONE);
+		this.progressBar = new ProgressBar(this.mainWindow, SWT.NONE);
 		GridData gd_progressBar = new GridData(SWT.LEFT, SWT.CENTER, true, false, 3, 1);
 		gd_progressBar.widthHint = 705;
-		progressBar.setLayoutData(gd_progressBar);
-		new Label(mainWindow, SWT.NONE);
-		new Label(mainWindow, SWT.NONE);
+		this.progressBar.setLayoutData(gd_progressBar);
+		new Label(this.mainWindow, SWT.NONE);
+		new Label(this.mainWindow, SWT.NONE);
 	}
 	
 	/**
 	 * 
 	 */
 	private void createValidationPanel() {
-		btnSort = new Button(mainWindow, SWT.NONE);
-		btnSort.setEnabled(false);
-		btnSort.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, true, 1, 1));
-		btnSort.setText(Messages.TagSortPictureSwt_btnSort_text);
+		this.btnSort = new Button(this.mainWindow, SWT.NONE);
+		this.btnSort.setEnabled(false);
+		this.btnSort.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, true, 1, 1));
+		this.btnSort.setText(Messages.TagSortPictureSwt_btnSort_text);
 	}
 	
 	/**
@@ -239,7 +239,6 @@ public class TagSortPictureSwt implements TagSortPicturesSwtInterface {
 			@Override
 			public void addMessage(MessageRowTSP msg) {
 				listLogs.add(msg.getErrorMessage());
-				
 			}
 
 			@Override
@@ -247,14 +246,14 @@ public class TagSortPictureSwt implements TagSortPicturesSwtInterface {
 		};
 			
 		TagSortPicturesCore tagSortPictures = new TagSortPicturesCore(text, null, null, templateGui);
-		textNbFiles.setText(tagSortPictures.getNbFiles().toString());;
+		this.textNbFiles.setText(tagSortPictures.getNbFiles().toString());;
 	}
 	
 	/**
 	 * 
 	 */
 	private void createListenerTabParamsPanel() {
-		btnSourceFolder.addSelectionListener(new SelectionAdapter() {
+		this.btnSourceFolder.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				String path = dialog.open();
@@ -269,7 +268,7 @@ public class TagSortPictureSwt implements TagSortPicturesSwtInterface {
 			}
 		});
 
-		btnRefreshNumber.addSelectionListener(new SelectionAdapter() {
+		this.btnRefreshNumber.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
@@ -279,7 +278,7 @@ public class TagSortPictureSwt implements TagSortPicturesSwtInterface {
 			}
 		});
 
-		btnDestinationFolder.addSelectionListener(new SelectionAdapter() {
+		this.btnDestinationFolder.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				String pathDest = dialog.open();
@@ -295,7 +294,7 @@ public class TagSortPictureSwt implements TagSortPicturesSwtInterface {
 	 * 
 	 */
 	private void createListenerTagsPanel() {
-		textAddTag.addKeyListener(new KeyAdapter() {
+		this.textAddTag.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.keyCode==16777296) {
@@ -305,7 +304,7 @@ public class TagSortPictureSwt implements TagSortPicturesSwtInterface {
 			}
 		});
 		
-		btnAddTag.addSelectionListener(new SelectionAdapter() {
+		this.btnAddTag.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
@@ -313,14 +312,14 @@ public class TagSortPictureSwt implements TagSortPicturesSwtInterface {
 			}
 		});
 		
-		btnDelTag.addSelectionListener(new SelectionAdapter() {
+		this.btnDelTag.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if(listExcludeTag.getSelectionIndex()!=-1) listExcludeTag.remove(listExcludeTag.getSelectionIndex());
 			}
 		});
 		
-		listExcludeTag.addKeyListener(new KeyAdapter() {
+		this.listExcludeTag.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				System.out.println(e.keyCode);
@@ -336,13 +335,14 @@ public class TagSortPictureSwt implements TagSortPicturesSwtInterface {
 	 * 
 	 */
 	private void createListenerValidationPanel() {
-		btnSort.addSelectionListener(new SelectionAdapter() {
+		this.btnSort.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				TemplateGuiInterface templateGui = new TemplateGuiInterface() {
 					
 					@Override
 					public void setProgressBarTotal(Integer hundredPercent) {
+						progressBar.setSelection(0);
 						progressBar.setMaximum(hundredPercent);
 					}
 					
@@ -379,7 +379,7 @@ public class TagSortPictureSwt implements TagSortPicturesSwtInterface {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		mainWindow = this.CreateShell();		
+		this.mainWindow = this.createShell();		
 		this.dialog = new DirectoryDialog(mainWindow);
 		this.createTabsPanel();
 		this.createTagsPanel();

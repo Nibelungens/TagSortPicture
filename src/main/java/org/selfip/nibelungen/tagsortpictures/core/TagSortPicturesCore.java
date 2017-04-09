@@ -179,30 +179,42 @@ public class TagSortPicturesCore extends PropertiesTSP implements TagSortPicture
 	 */
 	private void triPicture(String file) {
 		PictureTSP picture = new PictureTSP(file);
+		String noTagFolder = null;
 		
 		if(!picture.isError()) {	
 			this.addLogMessageINFO(TagSortPicturesCore.MSG_JOB_FILE, picture.getName());
 			this.addLogMessageDEBUG(TagSortPicturesCore.MSG_PATH_FULL_PICTURE, picture.getAbsoluteFile().toString());
 			
-			for (String tag : picture.getTags()) {
-				this.addLogMessageDEBUG(TagSortPicturesCore.MSG_LOAD_TAG, tag);
-				
-				if(!this.isExcludeList(tag)) {
-
-					this.addLogMessageDEBUG(TagSortPicturesCore.MSG_JOB_COPY, picture.getAbsolutePath(), this.destinationFolder.getAbsolutePath() + "\\" + tag + "\\" + picture.getName());
-					this.destinationFolder.movePictureTSP(picture, tag);
+			if (!picture.getTags().isEmpty()) {
+				for (String tag : picture.getTags()) {
+					this.addLogMessageDEBUG(TagSortPicturesCore.MSG_LOAD_TAG, tag);
 					
-					if(!this.destinationFolder.isError()){
-						this.gui.addIncrementProgressBar();
-					} else if(this.sourceFolder.getError()!=null) {
-						this.gui.addIncrementProgressBar();					
-						this.folderErrorManagement(this.sourceFolder);
-					}
-				} else {
-					this.addLogMessageWARNING(TagSortPicturesCore.MSG_TAG_EXCLUDE, tag);
-				}
+					if(!this.isExcludeList(tag)) {
 
+						this.addLogMessageDEBUG(TagSortPicturesCore.MSG_JOB_COPY, picture.getAbsolutePath(), this.destinationFolder.getAbsolutePath() + "\\" + tag + "\\" + picture.getName());
+						this.destinationFolder.movePictureTSP(picture, tag);
+						
+						if(this.sourceFolder.getError()!=null) {
+							this.folderErrorManagement(this.sourceFolder);
+						}
+					} else {
+						this.addLogMessageWARNING(TagSortPicturesCore.MSG_TAG_EXCLUDE, tag);
+					}
+
+				}	
+			} else {
+				noTagFolder = this.getProperty(TagSortPicturesCore.PARAM_FOLDER_NAME_NOTAG);
+				
+				this.addLogMessageDEBUG(TagSortPicturesCore.MSG_NO_TAG, picture.getName());
+				this.addLogMessageDEBUG(TagSortPicturesCore.MSG_JOB_COPY, picture.getAbsolutePath(), this.destinationFolder.getAbsolutePath() + "\\"+ noTagFolder + "\\" + picture.getName());
+				this.destinationFolder.movePictureTSP(picture, noTagFolder);
+				
+				if(this.sourceFolder.getError()!=null) {
+					this.folderErrorManagement(this.sourceFolder);
+				}
 			}
+			
+			this.gui.addIncrementProgressBar();
 		} else {
 			this.pictureErrorManagement(picture);
 		}

@@ -5,6 +5,11 @@ public interface TagSortPicturesCoreInterface {
 	/**
 	 * 
 	 */
+	public static final String PARAM_FOLDER_NAME_NOTAG = "param.folder.name.notag";
+	
+	/**
+	 * 
+	 */
 	public static final String MSG_TAG_EXIST = "msg.tag.exist";
 	
 	/**
@@ -86,6 +91,11 @@ public interface TagSortPicturesCoreInterface {
 	 * 
 	 */
 	public static final String MSG_TAG_EXCLUDE = "msg.tag.exclude";
+	
+	/**
+	 * 
+	 */
+	public static final String MSG_NO_TAG = "msg.no.tag";
 	
 	/**
 	 * 
