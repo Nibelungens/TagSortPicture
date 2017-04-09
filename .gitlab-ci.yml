@@ -1,13 +1,7 @@
 image: jamesdbloom/docker-java8-maven
 
 stages:
-    - test
     - install
-    
-maven-test:
-    stage: test
-    script:
-        - mvn test
 
 maven-install:
     stage: install
@@ -15,4 +9,4 @@ maven-install:
         - mvn clean install
     artifacts:
         paths:
-            - target/*.jar
+            - target/
