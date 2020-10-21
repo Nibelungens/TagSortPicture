@@ -70,7 +70,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>org.selfip.nibelungen.tagsortpictures.TagSortPicturesGui</mainClass>
+							<mainClass>org.nibelungen.tagsortpictures.TagSortPicturesGui</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
