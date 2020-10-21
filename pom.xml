@@ -1,13 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.selfip.nibelungen</groupId>
+	<groupId>org.nibelungens</groupId>
 	<artifactId>tagsortpictures</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 	<packaging>jar</packaging>
 
-	<name>tagsortpictures</name>
+	<name>TagSortPictures</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -18,8 +17,8 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>provided</scope>
+			<version>4.13.1</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.swt.org.eclipse.swt.win32.win32.x86_64.4.3.swt</groupId>
@@ -29,18 +28,18 @@
 		<dependency>
 			<groupId>com.drewnoakes</groupId>
 			<artifactId>metadata-extractor</artifactId>
-			<version>2.6.2</version>
+			<version>2.15.0</version>
 		</dependency>
 		<dependency>
-    <groupId>org.eclipse.ui</groupId>
-    <artifactId>workbench</artifactId>
-    <version>3.3.0-I20070608-1100</version>
-</dependency>
+    		<groupId>org.eclipse.ui</groupId>
+    		<artifactId>workbench</artifactId>
+   			<version>3.3.0-I20070608-1100</version>
+		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
-			<version>1.7.6</version>
-			<scope>provided</scope>
+			<version>1.7.30</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -56,21 +55,21 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>3.8.1</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>14</source>
+					<target>14</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.4</version>
+				<version>3.3.0</version>
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>org.selfip.nibelungen.tagsortpictures.TagSortPicturesGui</mainClass>
+							<mainClass>org.nibelungen.tagsortpictures.TagSortPicturesGui</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
