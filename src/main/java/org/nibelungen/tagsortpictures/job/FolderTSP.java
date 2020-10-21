@@ -45,11 +45,10 @@ public class FolderTSP extends File implements FolderTSPInterface {
 
 	public List<String> getFiles() {
 		FilenameFilter fileNameFilter = (dir, name) -> {
-			File fic = new File(dir.getPath() + "\\" + name);
+			File fic = new File(dir.getPath() + "/" + name);
 			return fic.isFile();
 		};
-		
-		
+
 		String[] tabFiles = this.list(fileNameFilter);
 		String file;
 		this.listFiles = new ArrayList<>();

@@ -56,6 +56,7 @@ public class TestFolderTSP {
 		List<String> files = folder.getFiles();
 
 		assertNotNull(files);
+		assertFalse(files.isEmpty());
 		assertEquals(folder.getNumberFileInFolder(), Integer.valueOf(3));
 	}
 

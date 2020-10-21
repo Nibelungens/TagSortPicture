@@ -4,8 +4,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.nibelungen.tagsortpictures.core.TagSortPicturesCore;
@@ -55,7 +57,10 @@ public class TestCore {
 		TagSortPicturesCore tagSortPictures = new TagSortPicturesCore(SOURCE_FOLDER_OK_SERACHTAG, null, null, this.getTemplateGuiInterface());
 		Map<String, Integer> mr = tagSortPictures.getExistTagsInSourceFolder();
 
-		assertTrue(mr.get(FIRST_TAG)==2 && mr.get(SECOND_TAG)==1 && mr.get(THIRD_TAG)==1);
+		assertEquals(3, mr.size());
+		assertEquals(Optional.of(2).get(), mr.get(FIRST_TAG));
+		assertEquals(Optional.of(1).get(), mr.get(SECOND_TAG));
+		assertEquals(Optional.of(1).get(), mr.get(THIRD_TAG));
 	}
 
 	@Test
@@ -75,7 +80,6 @@ public class TestCore {
 			@Override
 			public void addMessage(MessageRowTSP msg) {
 				System.out.print(msg.getErrorType().toString() + "\t- " + msg.getErrorMessage() + "\n");
-
 			}
 
 			@Override
