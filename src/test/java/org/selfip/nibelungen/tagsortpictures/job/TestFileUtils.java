@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.selfip.nibelungen.tagsortpictures.job;
 
 import java.io.File;
@@ -10,32 +7,18 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.selfip.nibelungen.tagsortpictures.utils.FileUtils;
 
-
-/**
- * @author Mickaël
- *
- */
 public class TestFileUtils {
-	
-	/**
-	 * 
-	 */
 	private static final String FILE_SOURCE = "src/test/resources/TestFileUtils/file.txt";
-	
-	/**
-	 * 
-	 */
 	private static final String FILE_DEST = "src/test/resources/TestFileUtils/copy.txt";
-	
 
 	@Test
 	public void copyFile() {
 		File sourceFile = new File(FILE_SOURCE);
 		File destinationFile = new File(FILE_DEST);
-		Boolean exist = false;
+		boolean exist = false;
 		Long fileSize = null;
 		
-		if(destinationFile.exists()) destinationFile.delete();
+		if(destinationFile.exists()) assertTrue(destinationFile.delete());
 		
 		
 		try {
@@ -47,10 +30,10 @@ public class TestFileUtils {
 		if(destinationFile.exists()) {
 			exist = true;
 			fileSize = destinationFile.length();
-			destinationFile.delete();
+			assertTrue(destinationFile.delete());
 		}
 
-		assertFalse(!exist);
+		assertTrue(exist);
 		assertEquals(Long.valueOf(sourceFile.length()), fileSize);
 	}
 }

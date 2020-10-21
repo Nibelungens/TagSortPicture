@@ -1,20 +1,11 @@
-/**
- * 
- */
 package org.selfip.nibelungen.tagsortpictures.job;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-/**
- * @author Mickaël
- *
- */
 public class TestPropertiesTSP {
-	
 	public static final String PROPERTIES_TEST = "TestProperties/test.properties";
-	
 	public static final String OK = "ok";
 	
 	@Test
