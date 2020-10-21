@@ -3,6 +3,7 @@ package org.nibelungen.tagsortpictures.job;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 
@@ -42,11 +43,12 @@ public class TestFolderTSP {
 	@Test
 	public void test_getFiles() {
 		FolderTSP folder = new FolderTSP(VALID_FULL_FOLDER);
-		String expectedResult = "[jpeg.jpeg, jpg.jpg, png.png]";
+		List<String> expectedResult = List.of("jpeg.jpeg", "jpg.jpg", "png.png");
 
 		List<String> files = folder.getFiles();
 
-		assertEquals(files.toString(), expectedResult);
+		assertEquals(3, files.size());
+		assertTrue(files.containsAll(expectedResult));
 	}
 
 	@Test
